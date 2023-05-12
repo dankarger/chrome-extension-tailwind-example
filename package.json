@@ -1,0 +1,20 @@
+{
+  "name": "extensions",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rm -rf dist .cache .parcel-cache",
+    "build:tailwind": "tailwindcss build src/style.css -c ./tailwind.config.js -o dist/style.css",
+    "watch": "NODE_ENV=development yarn build:tailwind && cp src/manifest.json dist/ && parcel watch --no-hmr src/{background.js,content-script.js}",
+    "build": "NODE_ENV=production yarn build:tailwind && cp src/manifest.json dist/ && parcel build src/{background.js,content-script.js}"
+  },
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "2.0.0-rc.0",
+    "autoprefixer": "^10.4.14",
+    "parcel": "^2.0.0-rc.0",
+    "postcss-import": "^15.1.0"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}
